@@ -1,0 +1,20 @@
+# Python virtual environments
+venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment files
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# OneDrive temp files
+~$*
