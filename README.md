@@ -1,39 +1,68 @@
-# Steam Reviews Sentiment Analysis Pipeline
+# Steam Reviews Aspect-Based Sentiment Analysis Pipeline
 
-This project implements a scalable NLP preprocessing pipeline for **17,000+ Steam reviews**, designed to clean and transform textual and numeric data into a format suitable for **sentiment analysis**, classifying reviews as positive or negative based on their wording.
+This project implements a natural language processing pipeline for **17,000+ Steam game reviews**, focused on cleaning noisy user-generated text and preparing it for **Aspect-Based Sentiment Analysis (ABSA)**.
+
+Unlike traditional sentiment analysis, which predicts a single overall sentiment, this project aims to identify sentiment toward specific gameplay-related aspects such as graphics, gameplay, monetization, performance, controls, and multiplayer experience.
 
 ---
 
 ## Features
 
-- **Text Cleaning & Normalization**
-  - Regex-based cleaning (`re`) to remove punctuation, special characters, and unwanted text patterns.
-  - Stopword removal using NLTK.
-  - Lemmatization with NLTK's `WordNetLemmatizer` to standardize word forms.
-  - Numeric and date conversion to words using `num2words` and `inflect` for consistency.
-  
-- **Batch Processing for Efficiency**
-  - Handles large datasets in batches depending on the number of cpu cores, efficiently converting numeric and date fields into textual format.
-  - Significantly reduces preprocessing time from ~10 minutes to under 2 minutes per batch.
- 
-- **Data Handling & Analysis**
-  - `pandas` for structured data handling, cleaning, and transformation.
-  - `numpy` for efficient numerical operations and array manipulation.
-  - `matplotlib` for visualizing distributions, review lengths, and sentiment patterns during exploratory data analysis.
+### **Text Cleaning & Normalization**
 
-- **Feature Extraction & ML-Ready Output**
-  - TF-IDF vectorization using `scikit-learn` for textual features.
-  - Label encoding for categorical data.
-  - Outputs cleaned, preprocessed text suitable for classification or other NLP tasks.
+* Regex-based preprocessing using Python’s `re` library to normalize noisy gaming-related review text.
+* URL removal, punctuation cleanup, and whitespace normalization.
+* Cleaning of corrupted alphanumeric tokens and embedded digit patterns commonly found in Steam reviews.
+* Numeric-to-text conversion using `num2words`.
+* Tokenization using NLTK for downstream NLP processing.
+
+---
+
+### **Gaming Slang & Abbreviation Handling**
+
+* Custom preprocessing rules for gaming-specific abbreviations and slang:
+
+  * `p2w → pay to win`
+  * `fps → first person shooter`
+  * `f2p → free to play`
+  * `tf2 → team fortress two`
+* Handling of punctuation-heavy and shorthand user-generated text commonly found in online gaming communities.
+
+---
+
+### **Exploratory Data Analysis**
+
+* Used `pandas` and `numpy` for structured preprocessing and data transformation.
+* Used `matplotlib` to analyze review distributions, review lengths, and token patterns.
+* Built regex-based inspection utilities to identify malformed tokens, URLs, special characters, and uncommon vocabulary.
+
+---
+
+### **Aspect-Based Sentiment Analysis (ABSA)**
+
+* Preparing tokenized Steam reviews for aspect-level sentiment classification.
+* Identifying review sentiment associated with gameplay-related aspects such as:
+
+  * gameplay
+  * graphics
+  * monetization
+  * controls
+  * multiplayer experience
+  * performance
+* Building an NLP workflow for fine-grained sentiment analysis on gaming review data.
 
 ---
 
 ## Tech Stack
 
-- **Language:** Python  
-- **Libraries:**  
-  - `pandas`, `numpy` – Data manipulation  
-  - `scikit-learn` – Preprocessing, vectorization, modeling  
-  - `nltk` – Tokenization, stopword removal, lemmatization  
-  - `num2words`, `inflect` – Numeric to text conversion  
-  - `kaggle`, `kagglehub` – Data acquisition and management  
+* **Language:** Python
+
+* **Libraries:**
+
+  * `pandas`, `numpy` — data manipulation and preprocessing
+  * `scikit-learn` — machine learning utilities and evaluation
+  * `nltk` — tokenization and NLP preprocessing
+  * `matplotlib` — exploratory data visualization
+  * `num2words` — numeric-to-text conversion
+  * `kaggle`, `kagglehub` — dataset acquisition and management
+
